@@ -1,0 +1,30 @@
+.json-wrapper {
+
+}
+
+.json-heading {
+    background: #ffb60094;
+    padding: 1rem 0 1rem 0;
+    width: 88.69%;
+    margin: 6px 2rem 5px 5rem;
+    border-radius: 4px;
+}
+
+.json-text-area {
+    height: 14rem;
+    width: 86%;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 15px;
+    padding: 11px;
+}
+
+.btn {
+    margin: 5px;
+    padding: 7px;
+    font-size: 17px;
+    font-weight: bold;
+    background: #ffecc1;
+    border-radius: 6px;
+    border: 1.5px solid black;
+}
