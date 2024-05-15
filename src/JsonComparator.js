@@ -30,6 +30,12 @@ function JsonComparator() {
         }
     };
 
+    const clearInputs = () => {
+        setInputOne('');
+        setInputTwo('');
+        setDifferences('');
+    };
+
     return (
         <div>
             <h3 className='json-heading'>Check Difference</h3>
@@ -52,7 +58,8 @@ function JsonComparator() {
                 />
             </div>
             <div>
-                <button className='btn' onClick={compareInputs}>Compare</button>
+                <button className='btn' onClick={compareInputs}>Find Differences</button>
+                <button className='btn' onClick={clearInputs}>Clear</button>
             </div>
             <div>
                 <h2>Differences:</h2>
@@ -63,4 +70,3 @@ function JsonComparator() {
 }
 
 export default JsonComparator;
-
