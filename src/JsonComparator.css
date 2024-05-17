@@ -1,13 +1,40 @@
-.json-wrapper {
-
+.json-compare-wrapper {
+    transition: height 0.3s ease;
+    overflow: hidden;
 }
 
-.json-heading {
+.json-compare-wrapper.expanded {
+    height: 102vh;
+    overflow: scroll;
+}
+
+.btn-expand-top {
+    margin: 5px 2px 0px 24px;
+    padding: 2px 0 1px 0;
+    float: left;
+    color: #060606;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    transform: rotate(180deg)
+}
+
+.json-compare-heading {
     background: #ffb60094;
-    padding: 1rem 0 1rem 0;
-    width: 88.69%;
-    margin: 6px 2rem 5px 5rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7px;
+    margin-bottom: 5px;
+    max-width: 80%;
+    padding: 1rem 20px;
     border-radius: 4px;
+}
+
+@media only screen and (max-width: 600px) {
+    .json-compare-heading {
+        font-size: 1.5em;
+    }
 }
 
 .textareas-container {
@@ -39,12 +66,13 @@
     padding: 11px;
 }
 
-.btn {
-    margin: 5px;
-    padding: 7px;
-    font-size: 17px;
+.btn-container .btns-jsoncompare {
+    color: #080707;
+    background: #0065ffa3;
+    margin: 4px;
     font-weight: bold;
-    background: #ffecc1;
-    border-radius: 6px;
-    border: 1.5px solid black;
+}
+
+.btn-container .btns-jsoncompare:hover {
+    background-color: #0065ff78;
 }

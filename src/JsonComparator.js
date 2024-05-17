@@ -1,11 +1,29 @@
-import React, { useState } from 'react';
-import { diffWordsWithSpace } from 'diff';  // Importing the function for word-level diffs
+import React, { useState, useRef, useEffect } from 'react';
+import { diffWordsWithSpace } from 'diff';
+import Button from '@mui/material/Button';
 import './JsonComparator.css';
 
 function JsonComparator() {
     const [inputOne, setInputOne] = useState('');
     const [inputTwo, setInputTwo] = useState('');
     const [differences, setDifferences] = useState('');
+    const [expanded, setExpanded] = useState(false);
+    const compareTextareaRef1 = useRef(null);
+    const compareTextareaRef2 = useRef(null);
+    const [textareaHeight, setTextareaHeight] = useState('200px');
+
+
+    useEffect(() => {
+        if (!compareTextareaRef1.current.contains(document.activeElement) && !compareTextareaRef2.current.contains(document.activeElement)) {
+            if (expanded) {
+                setTextareaHeight(`${compareTextareaRef1.current.scrollHeight-256}em`);
+                setTextareaHeight(`${compareTextareaRef2.current.scrollHeight-256}em`);
+            } else {
+                setTextareaHeight('17rem');
+            }
+        }
+        
+    }, [expanded, inputOne, inputTwo]);
 
     const handleInputOneChange = (event) => {
         setInputOne(event.target.value);
@@ -13,6 +31,10 @@ function JsonComparator() {
 
     const handleInputTwoChange = (event) => {
         setInputTwo(event.target.value);
+    };
+
+    const expandWindow = () => {
+        setExpanded(!expanded);
     };
 
     const compareInputs = () => {
@@ -31,28 +53,35 @@ function JsonComparator() {
     };
 
     return (
-        <div>
-            <h3 className='json-heading'>Check Difference</h3>
+        <div className={`json-compare-wrapper ${expanded ? 'expanded' : ''}`}>
+            <button className='btn-expand-top' onClick={expandWindow}>
+                {expanded ? <i className="material-icons">expand_less</i> : <i className="material-icons">expand_more</i>}
+            </button>
+            <h3 className='json-compare-heading'>Check Difference</h3>
             <div className='textareas-container'>
                 <textarea
                     className='diff-text-area-left'
                     value={inputOne}
+                    ref={compareTextareaRef1}
                     onChange={handleInputOneChange}
                     rows="10"
                     cols="50"
                     placeholder="Enter Text..."
+                    style={{ resize: 'none', height: textareaHeight }}
                 />
                 <textarea
                     className='diff-text-area-right'
                     value={inputTwo}
+                    ref={compareTextareaRef2}
                     onChange={handleInputTwoChange}
                     rows="10"
                     cols="50"
                     placeholder="Enter Text..."
+                    style={{ resize: 'none', height: textareaHeight }}
                 />
             </div>
-            <div>
-                <button className='btn' onClick={compareInputs}>Compare</button>
+            <div className='btn-container'>
+                <Button className='btns-jsoncompare' onClick={compareInputs}>Compare</Button>
             </div>
             <div>
                 <h2>Differences:</h2>
