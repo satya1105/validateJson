@@ -107,7 +107,7 @@ function JsonTool() {
 
     return (
         <div className={`json-wrapper ${expanded ? 'expanded' : ''}`}>
-            <h3 className='json-heading'>Check your JSON HERE</h3>
+            <h3 className='json-heading'>Check your JSON </h3>
             <div className='textarea-container'>
                 <textarea
                     className='json-text-area'
